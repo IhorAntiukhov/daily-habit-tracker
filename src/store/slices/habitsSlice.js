@@ -21,6 +21,16 @@ const habitsSlice = createSlice({
         else return habit;
       })];
     },
+    toggleHabitCompletion(state, action) {
+      const editableHabitIndex = state.habits.findIndex((habit) => habit.id === action.payload.id);
+
+      if (state.habits[editableHabitIndex].dates.includes(action.payload.date)) {
+        state.habits[editableHabitIndex].dates = [...state.habits[editableHabitIndex].dates
+          .filter((date) => date !== action.payload.date)];
+      } else {
+        state.habits[editableHabitIndex].dates.push(action.payload.date);
+      }
+    },
     deleteHabit(state, action) {
       state.habits = [...state.habits.filter((habit) => habit.id !== action.payload)];
     }
@@ -28,4 +38,4 @@ const habitsSlice = createSlice({
 });
 
 export const habitsReducer = habitsSlice.reducer;
-export const { setSortingCriteria, addHabit, editHabit, deleteHabit } = habitsSlice.actions;
+export const { setSortingCriteria, addHabit, editHabit, toggleHabitCompletion, deleteHabit } = habitsSlice.actions;

@@ -8,7 +8,7 @@ function Input({ value, onChange, placeholder }) {
 
   return (
     <div className={inputClass}>
-      <input className="w-full bg-[transparent] outline-none placeholder:text-neutral-3"
+      <input className="w-full bg-[transparent] outline-none placeholder:text-neutral-4"
         value={value} placeholder={placeholder} onInput={(event) => onChange(event.target.value)} />
     </div>
   );

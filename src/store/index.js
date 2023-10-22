@@ -8,7 +8,7 @@ import {
   newHabitReducer, setSelectedTemplate, setHabitAdditionStage, setHabitName, toggleHabitDay, setHabitDeadlineTime, setHabitIcon
 } from './slices/newHabitSlice';
 import {
-  habitsReducer, setSortingCriteria, addHabit, editHabit, deleteHabit
+  habitsReducer, setSortingCriteria, addHabit, editHabit, toggleHabitCompletion, deleteHabit
 } from './slices/habitsSlice';
 
 const rootReducer = combineReducers({
@@ -38,5 +38,5 @@ const store = configureStore({
 export const persistor = persistStore(store);
 export {
   store, setSortingCriteria, setSelectedTemplate, setHabitAdditionStage, setHabitName, toggleHabitDay, setHabitDeadlineTime, setHabitIcon,
-  addHabit, editHabit, deleteHabit
+  addHabit, editHabit, toggleHabitCompletion, deleteHabit
 };

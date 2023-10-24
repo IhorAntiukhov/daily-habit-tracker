@@ -10,16 +10,24 @@ import {
 import {
   habitsReducer, setSortingCriteria, addHabit, editHabit, toggleHabitCompletion, deleteHabit
 } from './slices/habitsSlice';
+import {
+  goalsReducer, addGoal
+} from './slices/goalsSlice';
+import {
+  newGoalReducer, setGoalName, changeMaxSkips, setHabit, setFinalDate, setInitialState
+} from './slices/newGoalSlice';
 
 const rootReducer = combineReducers({
   newHabitReducer,
-  habitsReducer
+  habitsReducer,
+  goalsReducer,
+  newGoalReducer
 });
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['habitsReducer'],
+  whitelist: ['habitsReducer', 'goalsReducer'],
   stateReconciler: autoMergeLevel2,
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -38,5 +46,7 @@ const store = configureStore({
 export const persistor = persistStore(store);
 export {
   store, setSortingCriteria, setSelectedTemplate, setHabitAdditionStage, setHabitName, toggleHabitDay, setHabitDeadlineTime, setHabitIcon,
-  addHabit, editHabit, toggleHabitCompletion, deleteHabit
+  addHabit, editHabit, toggleHabitCompletion, deleteHabit,
+  addGoal,
+  setGoalName, changeMaxSkips, setHabit, setFinalDate, setInitialState
 };

@@ -3,7 +3,7 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 import { MdCheck } from 'react-icons/md';
 import classNames from 'classnames';
 
-function MultipleSelect({ className, value, onChange, options, icon, label }) {
+function MultipleSelect({ className, value, onChange, options, icon, label, singleOption }) {
   const [isOpen, setIsOpen] = useState(null);
   const selectEl = useRef();
 
@@ -18,16 +18,18 @@ function MultipleSelect({ className, value, onChange, options, icon, label }) {
   }, [isOpen]);
 
   const renderedOptions = options.map((option) => {
+    const checked = (singleOption) ? value === option : value.includes(option);
+
     const optionClass = classNames(
       'relative', '-z-10', 'flex', 'space-x-2', 'px-4', 'py-2', 'border-neutral-3', 'border-b-[1.5px]',
       'duration-200', 'first:rounded-t-xl', 'last:rounded-b-xl', 'last:border-b-0',
-      { 'bg-neutral-2-brighter': value.includes(option), 'bg-neutral-2': !value.includes(option) }
+      { 'bg-neutral-2-brighter': checked, 'bg-neutral-2': !checked }
     );
 
     return (
       <div key={option} className={optionClass} onClick={() => onChange(option)}>
         <p className="grow">{option}</p>
-        {(value.includes(option)) && <MdCheck className="w-6 h-6" />}
+        {checked && <MdCheck className="w-6 h-6" />}
       </div>
     );
   }

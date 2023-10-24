@@ -52,8 +52,8 @@ function CompletionCalendar() {
     );
 
     renderedDates.push(
-      <div className="relative">
-        <div key={date.getDate()} className={calendarDayClass} onClick={() =>
+      <div key={date.getDate()} className="relative">
+        <div className={calendarDayClass} onClick={() =>
           ((completedHabits.length > 0 && skippedHabits.length === 0) || skippedHabits.length > 0) &&
           setShowCompletionMenu((showCompletionMenu === date.getDate()) ? 0 : date.getDate())
         }>

@@ -20,13 +20,15 @@ function HabitsPage() {
 
   return (
     <div className="flex flex-col justify-between h-full pt-[4.5rem] pb-8 px-4 animate-slide-down">
-      {(habits.length > 0) ?
-        <div className="flex flex-col items-center space-y-2">
-          <SelectSorting criteria={sortingCriteria} order={sortingOrder}
-            onChange={handleChange} options={['Date', 'Total days', 'Current streak', 'Total passes']} />
-          {renderedHabits}
-        </div> :
-        <p className="text-center font-bold text-neutral-4">You haven't added any habits</p>}
+      <div className="flex flex-col space-y-2">
+        {(habits.length > 0) ?
+          <>
+            <SelectSorting criteria={sortingCriteria} order={sortingOrder}
+              onChange={handleChange} options={['Date', 'Total days', 'Current streak', 'Total passes']} />
+            {renderedHabits}
+          </> :
+          <p className="text-center font-bold text-neutral-4">You haven't added any habits</p>}
+      </div>
 
       <Button className="self-center" onClick={() => navigate('/habits/new-habit')} equalPaddings>
         <Icon icon={<MdAdd className="w-8 h-8" />} color="white" />

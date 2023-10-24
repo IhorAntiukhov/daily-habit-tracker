@@ -3,6 +3,7 @@ import NavDrawer from './components/navigation/NavDrawer';
 import HabitsPage from './components/habits/HabitsPage';
 import NewHabitPage from './components/habits/NewHabitPage';
 import TodaysHabitsPage from './components/habits/TodaysHabitsPage';
+import TotalProgressPage from './components/progress/TotalProgressPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route index element={<HabitsPage />} />
           <Route path="new-habit" element={<NewHabitPage />} />
         </Route>
+        <Route path="/progress" element={<TotalProgressPage />} />
       </Routes>
     </div>
   );

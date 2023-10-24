@@ -22,11 +22,11 @@ function NewHabitPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const renderedHabitTemplates = habitTemplates.map((habit) => <HabitTemplate data={habit} />);
+  const renderedHabitTemplates = habitTemplates.map((habit) => <HabitTemplate key={habit.name} data={habit} />);
 
   const renderedHabitIcons = habitTemplates.map((habit) => {
     const iconClass = classNames(
-      'p-2.5', 'bg-neutral-2', 'rounded-full', 'shadow-md', 'border-2', 'animate-slide-down', 'duration-200',
+      'p-2.5', 'bg-neutral-2', 'rounded-full', 'shadow-md', 'border-2', 'duration-200',
       {
         'border-accent shadow-accent': habitIcon === habit.name,
         'border-[transparent] shadow-neutral-3': habitIcon !== habit.name
@@ -61,10 +61,10 @@ function NewHabitPage() {
     <div className="flex flex-col justify-between h-full pt-[4.5rem] pb-8 px-4 animate-slide-down">
       <div className="flex flex-col space-y-2">
         {habitAdditionStage === 1 && <>
-          <p className="-mx-4 mb-2 px-4 pb-1 text-lg font-bold text-neutral-4 border-b-[1.5px] border-neutral-3 animate-slide-down">
+          <p className="-mx-4 mb-2 px-4 pb-1 text-lg font-bold text-neutral-4 border-b-[1.5px] border-neutral-3">
             Suggested habits
           </p>
-          <div className="self-stretch grid grid-cols-[repeat(auto-fit,_10rem)] gap-3 animate-slide-down">
+          <div className="self-stretch grid grid-cols-[repeat(auto-fit,_10rem)] gap-3">
             {renderedHabitTemplates}
           </div>
         </>}

@@ -42,7 +42,7 @@ function SelectSorting({ criteria, order, onChange, options }) {
 
   const selectClass = classNames(
     'flex', 'justify-between', 'space-x-2', 'mb-2', 'px-4', 'py-2',
-    'rounded-full', 'shadow-md', 'shadow-neutral-3', 'animate-slide-down', 'duration-200',
+    'rounded-full', 'shadow-md', 'shadow-neutral-3', 'duration-200',
     { 'bg-neutral-2-brighter': isOpen, 'bg-neutral-2': !isOpen });
 
   const arrowClass = classNames('w-6', 'h-6',

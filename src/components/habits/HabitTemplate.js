@@ -16,7 +16,7 @@ function HabitTemplate({ data }) {
   );
 
   return (
-    <div key={data.name} className={habitTemplateClass} onClick={() => dispatch(setSelectedTemplate(data.name))}>
+    <div className={habitTemplateClass} onClick={() => dispatch(setSelectedTemplate(data.name))}>
       <div className="p-2.5 bg-[white] rounded-full">
         {data.icon}
       </div>

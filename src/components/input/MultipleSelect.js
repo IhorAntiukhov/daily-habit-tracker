@@ -27,7 +27,7 @@ function MultipleSelect({ className, value, onChange, options, icon, label }) {
     return (
       <div key={option} className={optionClass} onClick={() => onChange(option)}>
         <p className="grow">{option}</p>
-        {(value.includes(option)) && <MdCheck className="w-6 h-6 animate-slide-down" />}
+        {(value.includes(option)) && <MdCheck className="w-6 h-6" />}
       </div>
     );
   }
@@ -36,7 +36,7 @@ function MultipleSelect({ className, value, onChange, options, icon, label }) {
   const selectClass = classNames('relative', className);
   const currentValueClass = classNames(
     'flex', 'justify-between', 'space-x-2', 'mb-2', 'px-4', 'py-2', 'bg-neutral-2',
-    'rounded-full', 'shadow-md', 'shadow-neutral-3', 'animate-slide-down', 'duration-200',
+    'rounded-full', 'shadow-md', 'shadow-neutral-3', 'duration-200',
     { 'bg-neutral-2-brighter': isOpen });
 
   const arrowClass = classNames('w-6', 'h-6',

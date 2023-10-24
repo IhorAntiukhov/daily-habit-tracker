@@ -23,10 +23,10 @@ function NavDrawer() {
   return (
     <>
       <Icon icon={
-        <IoReorderThreeOutline className="absolute z-30 top-4 left-4 w-10 h-10" onClick={() => setIsOpen(!isOpen)} />
+        <IoReorderThreeOutline className="fixed z-30 top-4 left-4 w-10 h-10" onClick={() => setIsOpen(!isOpen)} />
       } color={(isOpen) ? 'white' : "#3A4874"} />
 
-      <div className="absolute">
+      <div className="fixed z-20">
         <div className={navDrawerClass}>
           <NavDrawerLink to="/" icon={<MdHome className="w-8 h-8" />} text="Today's habits" onClick={() => setIsOpen(false)} />
           <NavDrawerLink to="/habits" icon={<MdCheckCircle className="w-8 h-8" />} text="Your habits" onClick={() => setIsOpen(false)} />

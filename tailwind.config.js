@@ -17,7 +17,9 @@ module.exports = {
         3: '#AEB3AB',
         4: '#898C87',
         '2-brighter': '#dae0d7'
-      }
+      },
+      'success': '#7bc93c',
+      'failure': '#c93c3c'
     },
     animation: {
       'open-nav-drawer': 'openNavDrawer 0.3s ease-out 0s 1 normal forwards',
@@ -28,7 +30,8 @@ module.exports = {
       'open-select': 'openSelect 0.3s ease-out 0s 1 normal forwards',
       'close-select': 'closeSelect 0.3s ease-out 0s 1 normal forwards',
       'flip-select-arrow': 'flipSelectArrow 0.2s ease-out 0s 1 normal forwards',
-      'flip-select-arrow-back': 'flipSelectArrowBack 0.2s ease-out 0s 1 normal forwards'
+      'flip-select-arrow-back': 'flipSelectArrowBack 0.2s ease-out 0s 1 normal forwards',
+      'show-completion-menu': 'showCompletionMenu 0.3s ease-out 0s 1 normal forwards',
     },
     extend: {
       keyframes: {
@@ -94,6 +97,14 @@ module.exports = {
           },
           '100%': {
             transform: 'rotate(360deg)'
+          }
+        },
+        'showCompletionMenu': {
+          '0%': {
+            transform: 'scale(0%)'
+          },
+          '100%': {
+            transform: 'scale(100%)'
           }
         }
       }

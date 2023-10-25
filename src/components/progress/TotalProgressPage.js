@@ -28,7 +28,7 @@ function TotalProgressPage() {
   });
 
   return (
-    <div className="flex flex-col space-y-8 h-full pt-[4.5rem] animate-slide-down">
+    <div className="flex flex-col space-y-8 h-full pt-[4.5rem] overflow-auto animate-slide-down sm:pt-4 sm:rounded-xl sm:shadow-lg sm:shadow-neutral-2 sm:bg-[white] lg:min-w-[70%] xl:min-w-[50%]">
       {(habits.length > 0) ? <>
         <div className="px-4 pb-2 border-b-[1.5px] border-neutral-3">
           <ResponsiveContainer width="100%" height={300}>
@@ -46,9 +46,10 @@ function TotalProgressPage() {
           </ResponsiveContainer>
         </div>
 
-        <CompletionCalendar />
-
-        <ProgressCards />
+        <div className="flex flex-col space-y-8 xl:grid xl:grid-cols-[1fr,_1fr] xl:items-start xl:space-y-0">
+          <CompletionCalendar />
+          <ProgressCards />
+        </div>
       </> :
         <p className="text-center font-bold text-neutral-4">You haven't added any habits</p>}
     </div >

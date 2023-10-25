@@ -41,7 +41,7 @@ function Goal({ data }) {
   }
 
   return (
-    <div className="flex items-center space-x-2 w-full pl-4 pr-2 bg-neutral-2 rounded-xl shadow-md shadow-neutral-3">
+    <div className="flex items-center space-x-2 w-full pl-4 pr-2 bg-gradient-to-br from-neutral-2 to-neutral-5 rounded-xl shadow-md shadow-neutral-3">
       {goalIcon}
 
       <div className="grow flex flex-col pt-1 pb-2">
@@ -52,13 +52,13 @@ function Goal({ data }) {
         </div>
       </div>
 
-      <div className="flex flex-col items-center -space-y-1">
+      <div className="flex flex-col items-center -space-y-1 [text-shadow:1px_1px_7px_#FAFFF5]">
         <p className="text-2xl text-neutral-4">{(Math.ceil(daysLeft) > 0) ? Math.ceil(daysLeft) : Math.ceil(totalDays)}</p>
         <p className="text-neutral-4">{(Math.ceil(daysLeft) > 0) ? 'Days left' : 'Total days'}</p>
       </div>
 
       <Link to={`/goals/edit-goal/${data.id}`}>
-        <Icon icon={<MdEdit className="w-8 h-8" />} color="#3A4874" />
+        <Icon icon={<MdEdit className="w-8 h-8 drop-shadow-md" />} color="#3A4874" />
       </Link>
     </div>
   );

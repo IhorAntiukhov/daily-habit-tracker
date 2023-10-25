@@ -8,7 +8,8 @@ function HabitTemplate({ data }) {
 
   const habitTemplateClass = classNames(
     'flex', 'flex-col', 'justify-center', 'items-center', 'space-y-2', 'h-full', 'p-2',
-    'rounded-xl', 'bg-neutral-2', 'shadow-md', 'border-2', 'duration-200',
+    'rounded-xl', 'bg-neutral-2', 'shadow-md', 'border-2',
+    'cursor-pointer', 'duration-200', 'hover:opacity-80',
     {
       'border-accent shadow-accent': selectedTemplate === data.name,
       'border-[transparent] shadow-neutral-3': selectedTemplate !== data.name

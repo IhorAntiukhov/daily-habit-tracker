@@ -25,7 +25,8 @@ function CompletionCalendar() {
       (new Date(habit.created)).getTime() <= time && time <= now.getTime());
 
     const calendarDayClass = classNames(
-      'flex', 'justify-center', 'items-center', 'aspect-square', 'rounded-full', 'shadow-md', 'shadow-neutral-3', 'duration-200', 'active:scale-95',
+      'flex', 'justify-center', 'items-center', 'aspect-square', 'rounded-full', 'shadow-md', 'shadow-neutral-3',
+      'cursor-pointer', 'duration-200', 'hover:opacity-80', 'active:scale-95', 'sm:text-xl',
       {
         'bg-neutral-2': completedHabits.length === 0 && skippedHabits.length === 0,
         'bg-success': completedHabits.length > 0 && skippedHabits.length === 0,
@@ -69,7 +70,7 @@ function CompletionCalendar() {
   }
 
   return (
-    <div className="grid grid-cols-[repeat(auto-fill,_minmax(2.25rem,_1fr))] gap-2 px-4 pb-5 border-b-[1.5px] border-neutral-3">
+    <div className="grid grid-cols-[repeat(auto-fill,_minmax(2.25rem,_1fr))] gap-2 px-4 pb-5 border-b-[1.5px] border-neutral-3 sm:grid-cols-[repeat(7,_2.7rem)] sm:place-content-center sm:px-16 xl:border-b-0">
       {renderedDates}
     </div>
   );

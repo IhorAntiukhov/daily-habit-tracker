@@ -23,7 +23,7 @@ function TodaysHabitsPage() {
   const renderedCompletedHabits = completedHabits.map((habit) => <Habit key={habit.id} data={habit} todaysHabit />);
 
   return (
-    <div className="flex flex-col space-y-8 pt-[4.5rem] pb-8 px-4 animate-slide-down">
+    <div className="flex flex-col space-y-8 pt-[4.5rem] pb-8 px-4 animate-slide-down sm:pt-4 sm:rounded-xl sm:shadow-lg sm:shadow-neutral-2 sm:overflow-auto sm:bg-[white] lg:min-w-[70%] xl:min-w-[50%]">
       <div className="flex flex-col space-y-4">
         <p className="-mx-4 px-4 pb-1 text-lg font-bold text-neutral-4 border-b-[1.5px] border-neutral-3">
           To do

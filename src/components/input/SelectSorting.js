@@ -23,7 +23,7 @@ function SelectSorting({ criteria, order, onChange, options }) {
   const renderedOptions = options.map((option) => {
     const optionClass = classNames(
       'relative', '-z-10', 'flex', 'space-x-2', 'px-4', 'py-2', 'border-neutral-3', 'border-b-[1.5px]',
-      'duration-200', 'first:rounded-t-xl', 'last:rounded-b-xl', 'last:border-b-0',
+      'cursor-pointer', 'duration-200', 'hover:bg-neutral-2-brighter', 'first:rounded-t-xl', 'last:rounded-b-xl', 'last:border-b-0',
       { 'bg-neutral-2-brighter': criteria === option && !!order, 'bg-neutral-2': !(criteria === option && !!order) }
     );
 
@@ -41,8 +41,8 @@ function SelectSorting({ criteria, order, onChange, options }) {
   );
 
   const selectClass = classNames(
-    'flex', 'justify-between', 'space-x-2', 'mb-2', 'px-4', 'py-2',
-    'rounded-full', 'shadow-md', 'shadow-neutral-3', 'duration-200',
+    'flex', 'justify-between', 'space-x-2', 'mb-2', 'px-4', 'py-2', 'rounded-full',
+    'shadow-md', 'shadow-neutral-3', 'cursor-pointer', 'duration-200', 'hover:opacity-80',
     { 'bg-neutral-2-brighter': isOpen, 'bg-neutral-2': !isOpen });
 
   const arrowClass = classNames('w-6', 'h-6',

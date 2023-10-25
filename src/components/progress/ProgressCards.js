@@ -42,7 +42,7 @@ function ProgressCards() {
   }, 0);
 
   return (
-    <div className="grid grid-cols-[repeat(auto-fill,_minmax(8rem,_1fr))] gap-3 pb-8 px-4">
+    <div className="grid grid-cols-[repeat(auto-fit,_minmax(8rem,_1fr))] place-content-center gap-3 pb-8 px-4 xl:grid-cols-[repeat(2,_minmax(8rem,_1fr))] xl:pb-0">
       <ProgressCardsItem label="Best checks" value={bestCompletions.dates.length} habit={bestCompletions} />
       <ProgressCardsItem label="Best checks series" value={bestCompletionsSeries.dates.length} habit={bestCompletionsSeries} />
       <ProgressCardsItem label="Total checks" value={totalCompletions} />

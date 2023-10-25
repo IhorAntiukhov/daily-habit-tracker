@@ -42,12 +42,13 @@ function Habit({ data, todaysHabit }) {
   }
 
   const habitClass = classNames(
-    'flex', 'items-center', 'space-x-2', 'w-full', 'pl-4', 'pr-2',
-    'rounded-xl', 'bg-neutral-2', 'shadow-md', 'shadow-neutral-3',
+    'flex', 'items-center', 'space-x-2', 'w-full', 'pl-4', 'pr-2', 'rounded-xl',
+    'bg-gradient-to-br', 'from-neutral-2', 'to-neutral-5', 'shadow-md', 'shadow-neutral-3',
     { 'opacity-60': !compareTime() && todaysHabit });
 
   const completeHabitButtonClass = classNames(
-    'p-1', 'bg-primary-brighter', 'rounded-full', 'border-2', 'border-primary-main', 'duration-200',
+    'p-1', 'bg-primary-brighter', 'rounded-full', 'border-2', 'border-primary-main',
+    'cursor-pointer', 'duration-200', 'hover:opacity-80',
     { 'active:scale-90': compareTime() });
 
   return (
@@ -68,17 +69,17 @@ function Habit({ data, todaysHabit }) {
           </div>
         </div>
         <div className="flex items-center space-x-2">
-          <div className="flex flex-col items-center -space-y-1">
+          <div className="flex flex-col items-center -space-y-1 [text-shadow:1px_1px_7px_#FAFFF5]">
             <p className="text-2xl text-neutral-4">{data.dates.length}</p>
             <p className="text-sm text-neutral-4">Checks</p>
           </div>
-          <div className="flex flex-col items-center -space-y-1">
+          <div className="flex flex-col items-center -space-y-1 [text-shadow:1px_1px_7px_#FAFFF5]">
             <p className="text-2xl text-neutral-4">{currentCompletionSeries}</p>
             <p className="text-sm text-neutral-4">Serie</p>
           </div>
 
           <Link to={`/habits/edit-habit/${data.id}`}>
-            <Icon icon={<MdEdit className="w-8 h-8" />} color="#3A4874" />
+            <Icon icon={<MdEdit className="w-8 h-8 drop-shadow-md" />} color="#3A4874" />
           </Link>
         </div>
       </div>

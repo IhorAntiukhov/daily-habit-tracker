@@ -19,7 +19,7 @@ function HabitsPage() {
   const renderedHabits = habits.map((habit) => <Habit key={habit.id} data={habit} />);
 
   return (
-    <div className="flex flex-col justify-between h-full pt-[4.5rem] pb-8 px-4 animate-slide-down">
+    <div className="flex flex-col justify-between space-y-8 h-full pt-[4.5rem] pb-8 px-4 animate-slide-down sm:h-auto sm:pt-4 sm:rounded-xl sm:shadow-lg sm:shadow-neutral-2 sm:overflow-auto sm:bg-[white] lg:min-w-[70%] xl:min-w-[50%]">
       <div className="flex flex-col space-y-2">
         {(habits.length > 0) ?
           <>

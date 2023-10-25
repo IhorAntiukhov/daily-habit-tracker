@@ -9,9 +9,9 @@ function DateInput({ value, onChange, label }) {
   }
 
   const inputWrapperClass = classNames(
-    'flex', 'flex-col', 'justify-between', 'space-y-0', 'mb-1', 'px-4', 'py-2', 'bg-neutral-2', 'rounded-2xl',
+    'flex', 'flex-col', 'justify-between', 'space-y-0', 'px-4', 'pt-1', 'pb-2', 'bg-neutral-2', 'rounded-xl',
     'border-2', 'border-[transparent]', 'shadow-md', 'shadow-neutral-3', 'duration-200',
-    'focus-within:bg-neutral-2-brighter', 'focus-within:border-accent', 'focus-within:shadow-accent');
+    'focus-within:bg-neutral-2-brighter', 'focus-within:border-accent', 'focus-within:shadow-accent', 'xl:grow');
 
   const getInputClass = (year) => classNames(
     'text-center', 'bg-[transparent]', 'outline-none', 'border-b-2', 'border-neutral-3',

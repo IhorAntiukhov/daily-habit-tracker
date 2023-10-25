@@ -11,7 +11,7 @@ function NavDrawerLink({ to, icon, text, onClick }) {
   return (
     <NavLink to={to} className={getLinkClass} onClick={onClick}>
       <Icon icon={icon} color="white" />
-      <p className="px-4 text-center font-bold text-[white]">{text}</p>
+      <p className="px-4 text-center font-bold text-[white] whitespace-nowrap">{text}</p>
     </NavLink>
   );
 }

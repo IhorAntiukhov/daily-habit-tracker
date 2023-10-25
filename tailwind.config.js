@@ -16,6 +16,7 @@ module.exports = {
         2: '#d4d9d0',
         3: '#AEB3AB',
         4: '#898C87',
+        5: '#dfe6dc',
         '2-brighter': '#dae0d7'
       },
       'success': '#7bc93c',

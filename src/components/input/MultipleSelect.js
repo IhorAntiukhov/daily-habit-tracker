@@ -22,7 +22,7 @@ function MultipleSelect({ className, value, onChange, options, icon, label, sing
 
     const optionClass = classNames(
       'relative', '-z-10', 'flex', 'space-x-2', 'px-4', 'py-2', 'border-neutral-3', 'border-b-[1.5px]',
-      'duration-200', 'first:rounded-t-xl', 'last:rounded-b-xl', 'last:border-b-0',
+      'cursor-pointer', 'duration-200', 'hover:bg-neutral-2-brighter', 'first:rounded-t-xl', 'last:rounded-b-xl', 'last:border-b-0',
       { 'bg-neutral-2-brighter': checked, 'bg-neutral-2': !checked }
     );
 
@@ -37,8 +37,8 @@ function MultipleSelect({ className, value, onChange, options, icon, label, sing
 
   const selectClass = classNames('relative', className);
   const currentValueClass = classNames(
-    'flex', 'justify-between', 'space-x-2', 'mb-2', 'px-4', 'py-2', 'bg-neutral-2',
-    'rounded-full', 'shadow-md', 'shadow-neutral-3', 'duration-200',
+    'flex', 'justify-between', 'items-center', 'space-x-2', 'h-full', 'mb-2', 'px-4', 'py-2', 'bg-neutral-2',
+    'rounded-xl', 'shadow-md', 'shadow-neutral-3', 'cursor-pointer', 'hover:opacity-80', 'duration-200',
     { 'bg-neutral-2-brighter': isOpen });
 
   const arrowClass = classNames('w-6', 'h-6',

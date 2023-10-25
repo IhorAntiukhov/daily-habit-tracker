@@ -26,7 +26,7 @@ function NewHabitPage() {
 
   const renderedHabitIcons = habitTemplates.map((habit) => {
     const iconClass = classNames(
-      'p-2.5', 'bg-neutral-2', 'rounded-full', 'shadow-md', 'border-2', 'duration-200',
+      'p-2.5', 'bg-neutral-2', 'rounded-full', 'shadow-md', 'border-2', 'cursor-pointer', 'duration-200', 'hover:opacity-80',
       {
         'border-accent shadow-accent': habitIcon === habit.name,
         'border-[transparent] shadow-neutral-3': habitIcon !== habit.name
@@ -58,13 +58,13 @@ function NewHabitPage() {
   const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
   return (
-    <div className="flex flex-col justify-between h-full pt-[4.5rem] pb-8 px-4 animate-slide-down">
+    <div className="flex flex-col justify-between space-y-8 h-full pt-[4.5rem] pb-8 px-4 animate-slide-down sm:h-auto sm:pt-4 sm:rounded-xl sm:shadow-lg sm:shadow-neutral-2 sm:overflow-auto sm:bg-[white] lg:min-w-[70%] xl:min-w-[50%]">
       <div className="flex flex-col space-y-2">
         {habitAdditionStage === 1 && <>
           <p className="-mx-4 mb-2 px-4 pb-1 text-lg font-bold text-neutral-4 border-b-[1.5px] border-neutral-3">
             Suggested habits
           </p>
-          <div className="self-stretch grid grid-cols-[repeat(auto-fit,_10rem)] gap-3">
+          <div className="self-stretch grid grid-cols-[repeat(auto-fit,_10rem)] place-content-center gap-3">
             {renderedHabitTemplates}
           </div>
         </>}
@@ -72,13 +72,13 @@ function NewHabitPage() {
         {habitAdditionStage === 2 && <>
           <Input value={habitName} onChange={(text) => dispatch(setHabitName(text))} placeholder="Habit name ..." />
 
-          <div className="flex space-x-2">
-            <MultipleSelect className="w-full" value={habitDays} onChange={(day) => dispatch(toggleHabitDay(day))}
+          <div className="flex space-x-3">
+            <MultipleSelect className="w-full h-full xl:w-1/2" value={habitDays} onChange={(day) => dispatch(toggleHabitDay(day))}
               options={weekDays} icon={<MdCalendarMonth className="w-6 h-6" />} label="Habit days" />
             <SeparatedInput value={habitDeadlineTime} onChange={(time) => dispatch(setHabitDeadlineTime(time))} label="Deadline time" />
           </div>
 
-          <div className="flex flex-wrap justify-center gap-2 pt-2 mx-4">
+          <div className="flex flex-wrap justify-center gap-2 pt-2 mx-4 lg:self-center lg:w-1/2">
             {renderedHabitIcons}
           </div>
         </>}

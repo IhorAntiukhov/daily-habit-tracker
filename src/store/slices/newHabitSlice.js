@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { addHabit, editHabit } from './habitsSlice';
 
 const newHabitSlice = createSlice({
   name: 'newHabit',
@@ -6,7 +7,7 @@ const newHabitSlice = createSlice({
     selectedTemplate: null,
     habitAdditionStage: 1,
     habitName: '',
-    habitDays: [],
+    habitDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     habitDeadlineTime: '',
     habitIcon: null
   },
@@ -41,11 +42,31 @@ const newHabitSlice = createSlice({
     },
     setHabitIcon(state, action) {
       state.habitIcon = action.payload;
+    },
+    setHabitInitialState(state, action) {
+      state.habitAdditionStage = 2;
+      state.habitName = action.payload.name;
+      state.habitDays = action.payload.days;
+      state.habitDeadlineTime = action.payload.time;
+      state.habitIcon = action.payload.icon;
     }
+  },
+  extraReducers(builder) {
+    const resetState = (state) => {
+      state.selectedTemplate = null;
+      state.habitAdditionStage = 1;
+      state.habitName = '';
+      state.habitDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+      state.habitDeadlineTime = '';
+      state.habitIcon = null;
+    };
+
+    builder.addCase(addHabit, resetState);
+    builder.addCase(editHabit, resetState);
   }
 });
 
 export const newHabitReducer = newHabitSlice.reducer;
 export const {
-  setSortingCriteria, setSelectedTemplate, setHabitAdditionStage, setHabitName, toggleHabitDay, setHabitDeadlineTime, setHabitIcon
+  setSortingCriteria, setSelectedTemplate, setHabitAdditionStage, setHabitName, toggleHabitDay, setHabitDeadlineTime, setHabitIcon, setHabitInitialState
 } = newHabitSlice.actions;

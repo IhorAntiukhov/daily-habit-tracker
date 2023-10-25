@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
-import { currentTime } from '../time';
 
 function useCompletionsSeries(habit) {
   return useMemo(() => {
     let currentCompletionSeries = 0;
     if (habit.dates.length > 0) {
-      for (let time = (new Date(currentTime)).getTime(); time >= (new Date(habit.dates[0])).getTime(); time -= 8.64e+7) {
+      let time = (new Date()).getTime();
+      do {
         const date = new Date(time);
         const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         const stringDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
@@ -15,7 +15,9 @@ function useCompletionsSeries(habit) {
         } else if (habit.days.includes(weekDays[date.getDay()]) && !habit.dates.includes(stringDate)) {
           break;
         }
-      }
+
+        time -= 8.64e+7
+      } while (time >= (new Date(habit.dates[0])).getTime());
     }
 
     return currentCompletionSeries;

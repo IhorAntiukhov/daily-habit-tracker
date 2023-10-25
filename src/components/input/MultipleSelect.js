@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
+import classNames from 'classnames';
+
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { MdCheck } from 'react-icons/md';
-import classNames from 'classnames';
 
 function MultipleSelect({ className, value, onChange, options, icon, label, singleOption }) {
   const [isOpen, setIsOpen] = useState(null);
@@ -22,7 +23,7 @@ function MultipleSelect({ className, value, onChange, options, icon, label, sing
 
     const optionClass = classNames(
       'relative', '-z-10', 'flex', 'space-x-2', 'px-4', 'py-2', 'border-neutral-3', 'border-b-[1.5px]',
-      'cursor-pointer', 'duration-200', 'hover:bg-neutral-2-brighter', 'first:rounded-t-xl', 'last:rounded-b-xl', 'last:border-b-0',
+      'cursor-pointer', 'duration-200', 'first:rounded-t-xl', 'last:rounded-b-xl', 'last:border-b-0',
       { 'bg-neutral-2-brighter': checked, 'bg-neutral-2': !checked }
     );
 

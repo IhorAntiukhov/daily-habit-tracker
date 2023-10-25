@@ -5,13 +5,13 @@ import {
 import storage from 'redux-persist/lib/storage';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import {
-  newHabitReducer, setSelectedTemplate, setHabitAdditionStage, setHabitName, toggleHabitDay, setHabitDeadlineTime, setHabitIcon
+  newHabitReducer, setSelectedTemplate, setHabitAdditionStage, setHabitName, toggleHabitDay, setHabitDeadlineTime, setHabitIcon, setHabitInitialState
 } from './slices/newHabitSlice';
 import {
   habitsReducer, setSortingCriteria, addHabit, editHabit, toggleHabitCompletion, deleteHabit
 } from './slices/habitsSlice';
 import {
-  goalsReducer, addGoal
+  goalsReducer, addGoal, editGoal, deleteGoal
 } from './slices/goalsSlice';
 import {
   newGoalReducer, setGoalName, changeMaxSkips, setHabit, setFinalDate, setInitialState
@@ -45,8 +45,8 @@ const store = configureStore({
 
 export const persistor = persistStore(store);
 export {
-  store, setSortingCriteria, setSelectedTemplate, setHabitAdditionStage, setHabitName, toggleHabitDay, setHabitDeadlineTime, setHabitIcon,
+  store, setSortingCriteria, setSelectedTemplate, setHabitAdditionStage, setHabitName, toggleHabitDay, setHabitDeadlineTime, setHabitIcon, setHabitInitialState,
   addHabit, editHabit, toggleHabitCompletion, deleteHabit,
-  addGoal,
+  addGoal, editGoal, deleteGoal,
   setGoalName, changeMaxSkips, setHabit, setFinalDate, setInitialState
 };

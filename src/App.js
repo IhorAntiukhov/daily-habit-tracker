@@ -1,11 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
 import NavDrawer from './components/navigation/NavDrawer';
+
 import HabitsPage from './components/habits/HabitsPage';
 import NewHabitPage from './components/habits/NewHabitPage';
 import TodaysHabitsPage from './components/habits/TodaysHabitsPage';
+
 import TotalProgressPage from './components/progress/TotalProgressPage';
 import GoalsPage from './components/goals/GoalsPage';
 import NewGoalPage from './components/goals/NewGoalPage';
+
+import NotFoundPage from './components/other/NotFoundPage';
 
 function App() {
   return (
@@ -25,6 +29,7 @@ function App() {
             <Route path="new-goal" element={<NewGoalPage />} />
             <Route path="edit-goal/:id" element={<NewGoalPage />} />
           </Route>
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
 

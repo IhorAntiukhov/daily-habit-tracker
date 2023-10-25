@@ -1,10 +1,12 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { MdAdd, MdArrowBack, MdArrowForward, MdCalendarMonth } from 'react-icons/md';
+import { nanoid } from '@reduxjs/toolkit';
+import { useNavigate, useParams } from 'react-router-dom';
+import { MdAdd, MdEdit, MdDelete, MdArrowBack, MdArrowForward, MdCalendarMonth } from 'react-icons/md';
 import classNames from 'classnames';
 import {
   setHabitAdditionStage, setHabitName, toggleHabitDay, setHabitDeadlineTime, setHabitIcon,
-  addHabit
+  addHabit, setHabitInitialState, editHabit, deleteHabit
 } from '../../store';
 import habitTemplates from '../../habitTemplates';
 import Button from '../input/Button';
@@ -12,15 +14,28 @@ import Icon from '../other/Icon';
 import Input from '../input/Input';
 import MultipleSelect from '../input/MultipleSelect';
 import SeparatedInput from '../input/SeparatedInput';
-import { nanoid } from '@reduxjs/toolkit';
 import HabitTemplate from './HabitTemplate';
 
 function NewHabitPage() {
   const {
     habitAdditionStage, habitName, habitDays, habitDeadlineTime, habitIcon
   } = useSelector((state) => state.newHabitReducer);
+  const habits = useSelector((state) => state.habitsReducer.habits);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { id } = useParams();
+  const editableHabit = { ...habits.find((habit) => habit.id === id) };
+
+  useEffect(() => {
+    if (!!id) {
+      setTimeout(() => {
+        const habit = { ...habits.find((habit) => habit.id === id) };
+        dispatch(setHabitInitialState(habit));
+      }, 500);
+    }
+  }, [id, habits, dispatch]);
 
   const renderedHabitTemplates = habitTemplates.map((habit) => <HabitTemplate key={habit.name} data={habit} />);
 
@@ -40,25 +55,34 @@ function NewHabitPage() {
     );
   });
 
-  const handleAddHabit = () => {
+  const handleAddEditHabit = (addOrEdit) => {
     const now = new Date();
     const formattedDate = now.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: '2-digit' });
 
     const habit = {
-      id: nanoid(), name: habitName,
+      id: (addOrEdit) ? nanoid() : editableHabit.id, name: habitName,
       icon: habitIcon, days: habitDays,
       time: habitDeadlineTime,
-      created: formattedDate, dates: []
+      created: formattedDate, dates: editableHabit.dates
     };
 
-    dispatch(addHabit(habit));
+    dispatch((addOrEdit) ? addHabit(habit) : editHabit(habit));
     navigate('/habits');
   };
 
+  const removeHabit = () => {
+    dispatch(deleteHabit(editableHabit.id));
+    navigate('/habits');
+  }
+
   const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const pageClass = classNames(
+    'flex', 'flex-col', 'justify-between', 'space-y-8', 'h-full', 'pt-[4.5rem]', 'pb-8', 'px-4', 'animate-slide-down',
+    'overflow-auto', 'sm:h-auto', 'sm:pt-4', 'sm:rounded-xl', 'sm:shadow-lg', 'sm:shadow-neutral-2', 'sm:bg-[white]',
+    'lg:min-w-[70%]', 'xl:min-w-[50%]');
 
   return (
-    <div className="flex flex-col justify-between space-y-8 h-full pt-[4.5rem] pb-8 px-4 animate-slide-down sm:h-auto sm:pt-4 sm:rounded-xl sm:shadow-lg sm:shadow-neutral-2 sm:overflow-auto sm:bg-[white] lg:min-w-[70%] xl:min-w-[50%]">
+    <div className={pageClass}>
       <div className="flex flex-col space-y-2">
         {habitAdditionStage === 1 && <>
           <p className="-mx-4 mb-2 px-4 pb-1 text-lg font-bold text-neutral-4 border-b-[1.5px] border-neutral-3">
@@ -90,16 +114,28 @@ function NewHabitPage() {
           <Icon icon={<MdArrowForward className="w-6 h-6" color="white" />} />
         </Button>}
 
-      {habitAdditionStage === 2 &&
+      {(habitAdditionStage === 2 && !id) &&
         <div className="flex justify-between space-x-2">
           <Button onClick={() => dispatch(setHabitAdditionStage('back'))}>
             <Icon icon={<MdArrowBack className="w-6 h-6" color="white" />} />
             <p className="text-lg text-[white]">Back</p>
           </Button>
 
-          <Button onClick={handleAddHabit}>
+          <Button onClick={() => handleAddEditHabit(true)}>
             <Icon icon={<MdAdd className="w-6 h-6" color="white" />} />
             <p className="text-lg text-[white]">Create habit</p>
+          </Button>
+        </div>}
+
+      {!!id &&
+        <div className="flex justify-center space-x-2">
+          <Button className="basis-1/2" onClick={() => handleAddEditHabit(false)}>
+            <Icon icon={<MdEdit className="w-6 h-6" color="white" />} />
+            <p className="text-lg text-[white]">Edit habit</p>
+          </Button>
+          <Button className="basis-1/2" onClick={removeHabit}>
+            <Icon icon={<MdDelete className="w-6 h-6" color="white" />} />
+            <p className="text-lg text-[white]">Delete habit</p>
           </Button>
         </div>}
     </div>

@@ -1,12 +1,12 @@
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { MdCheck, MdEdit } from 'react-icons/md';
 import classNames from 'classnames';
+
+import { MdCheck, MdEdit } from 'react-icons/md';
 import useCompletionsSeries from '../../hooks/use-completions-series';
 import { toggleHabitCompletion } from '../../store';
 import habitTemplates from '../../habitTemplates';
 import Icon from '../other/Icon';
-import { currentTime } from '../../time';
 
 function Habit({ data, todaysHabit }) {
   const dispatch = useDispatch();
@@ -17,13 +17,13 @@ function Habit({ data, todaysHabit }) {
   const currentCompletionSeries = useCompletionsSeries(data);
 
   const getTodayDate = () => {
-    const now = new Date(currentTime);
+    const now = new Date();
     return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
   }
 
   const compareTime = () => {
     if (data.time) {
-      const now = new Date(currentTime);
+      const now = new Date();
       const nowTime = now.getHours() * 60 + now.getMinutes();
       const deadlineTime = Number(data.time.slice(0, data.time.indexOf(':'))) * 60 + Number(data.time.slice(data.time.indexOf(':') + 1));
 

@@ -16,10 +16,7 @@ const habitsSlice = createSlice({
       state.habits.push(action.payload);
     },
     editHabit(state, action) {
-      state.habits = [...state.habits.map((habit) => {
-        if (habit.id === action.payload.id) return action.payload;
-        else return habit;
-      })];
+      state.habits[state.habits.findIndex((habit) => habit.id === action.payload.id)] = { ...action.payload };
     },
     toggleHabitCompletion(state, action) {
       const editableHabitIndex = state.habits.findIndex((habit) => habit.id === action.payload.id);

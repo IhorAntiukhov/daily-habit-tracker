@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { MdCheck, MdClose } from 'react-icons/md';
+
 import classNames from 'classnames';
-import { currentTime } from '../../time';
+import { MdCheck, MdClose } from 'react-icons/md';
 import Icon from '../other/Icon';
 
 function CompletionCalendar() {
   const habits = useSelector((state) => state.habitsReducer.habits);
   const [showCompletionMenu, setShowCompletionMenu] = useState(null);
 
-  const now = new Date(currentTime);
+  const now = new Date();
   const startDate = new Date(`${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-01`);
   const renderedDates = [];
 
@@ -47,7 +47,7 @@ function CompletionCalendar() {
       </div>);
 
     const completionMenuClass = classNames(
-      'absolute', 'flex', 'flex-col', 'space-y-2', 'mt-2', 'px-4', 'py-2',
+      'absolute', 'z-10', 'flex', 'flex-col', 'space-y-2', 'mt-2', 'px-4', 'py-2',
       'bg-neutral-2', 'rounded-xl', 'shadow-md', 'shadow-neutral-3',
       { 'animate-show-completion-menu': !!showCompletionMenu }
     );
@@ -69,8 +69,13 @@ function CompletionCalendar() {
     );
   }
 
+  const calendarClass = classNames(
+    'grid', 'grid-cols-[repeat(auto-fill,_minmax(2.25rem,_1fr))]', 'gap-2', 'px-4', 'pb-5',
+    'border-b-[1.5px]', 'border-neutral-3', 'sm:grid-cols-[repeat(7,_2.7rem)]',
+    'sm:place-content-center', 'sm:px-16', 'xl:border-b-0');
+
   return (
-    <div className="grid grid-cols-[repeat(auto-fill,_minmax(2.25rem,_1fr))] gap-2 px-4 pb-5 border-b-[1.5px] border-neutral-3 sm:grid-cols-[repeat(7,_2.7rem)] sm:place-content-center sm:px-16 xl:border-b-0">
+    <div className={calendarClass}>
       {renderedDates}
     </div>
   );

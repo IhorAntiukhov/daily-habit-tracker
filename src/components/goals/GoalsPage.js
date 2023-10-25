@@ -1,5 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import classNames from 'classnames';
+
 import { MdAdd } from 'react-icons/md';
 import Goal from './Goal';
 import Button from '../input/Button';
@@ -11,12 +13,20 @@ function GoalsPage() {
 
   const renderedGoals = goals.map((goal) => <Goal key={goal.id} data={goal} />);
 
+  const pageClass = classNames(
+    'flex', 'flex-col', 'justify-between', 'space-y-8', 'h-full', 'pt-[4.5rem]', 'pb-8', 'px-4', 'animate-slide-down',
+    'overflow-auto', 'sm:h-auto', 'sm:pt-4', 'sm:rounded-xl', 'sm:shadow-lg', 'sm:shadow-neutral-2', 'sm:bg-[white]',
+    'lg:min-w-[70%]', 'xl:min-w-[50%]');
+
+  const goalsClass = classNames('flex', 'flex-col', 'space-y-2',
+    { 'justify-center h-full': goals.length === 0 });
+
   return (
-    <div className="flex flex-col justify-between space-y-8 h-full pt-[4.5rem] pb-8 px-4 animate-slide-down sm:h-auto sm:pt-4 sm:rounded-xl sm:shadow-lg sm:shadow-neutral-2 sm:overflow-auto sm:bg-[white] lg:min-w-[70%] xl:min-w-[50%]">
-      <div className="flex flex-col space-y-2">
+    <div className={pageClass}>
+      <div className={goalsClass}>
         {(goals.length > 0) ?
           renderedGoals :
-          <p className="text-center font-bold text-neutral-4">You haven't added any goals</p>}
+          <p className="text-xl text-center font-bold text-neutral-4">You haven't added any goals</p>}
       </div>
 
       <Button className="self-center" onClick={() => navigate('/goals/new-goal')} equalPaddings>

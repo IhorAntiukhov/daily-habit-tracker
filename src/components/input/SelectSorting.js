@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
+import classNames from 'classnames';
+
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { AiOutlineSortAscending, AiOutlineSortDescending } from 'react-icons/ai';
-import classNames from 'classnames';
 
 function SelectSorting({ criteria, order, onChange, options }) {
   const [isOpen, setIsOpen] = useState(null);
@@ -17,7 +18,7 @@ function SelectSorting({ criteria, order, onChange, options }) {
     return () => document.removeEventListener('click', handleClick);
   }, [isOpen]);
 
-  const sortingOrderIcon = (order === 1) ?
+  const sortingOrderIcon = (order === -1) ?
     <AiOutlineSortAscending className="w-6 h-6" /> : <AiOutlineSortDescending className="w-6 h-6" />;
 
   const renderedOptions = options.map((option) => {
@@ -28,12 +29,12 @@ function SelectSorting({ criteria, order, onChange, options }) {
     );
 
     return (
-      <div key={option} className={optionClass} onClick={() => onChange(option, (order !== 1 || option !== criteria) ? 1 : 2)}>
+      <div key={option} className={optionClass} onClick={() => onChange(option, (order !== 1 || option !== criteria) ? 1 : -1)}>
         <div></div>
         <p className="grow text-center">{option}</p>
         <div className="w-6 h-6">
-          {(criteria === option && order === 1) && <AiOutlineSortAscending className="w-6 h-6" />}
-          {(criteria === option && order === 2) && <AiOutlineSortDescending className="w-6 h-6" />}
+          {(criteria === option && order === -1) && <AiOutlineSortAscending className="w-6 h-6" />}
+          {(criteria === option && order === 1) && <AiOutlineSortDescending className="w-6 h-6" />}
         </div>
       </div>
     );

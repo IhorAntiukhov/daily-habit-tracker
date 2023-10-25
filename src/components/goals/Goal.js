@@ -1,24 +1,27 @@
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames';
+
 import { MdCheck, MdClose } from 'react-icons/md';
 import { FiTarget } from 'react-icons/fi';
 import { MdEdit } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+
 import habitTemplates from '../../habitTemplates';
 import Icon from '../other/Icon';
-import { currentTime } from '../../time';
 
 function Goal({ data }) {
   const habits = useSelector((state) => state.habitsReducer.habits);
 
   const habit = habits.find((habit) => habit.id === data.habit);
+  if (!habit) return;
   const habitIcon = habitTemplates.find((templateHabit) => templateHabit.name === habit.icon)?.icon;
 
-  const daysLeft = ((new Date(data.finalDate)).getTime() - (new Date(currentTime)).getTime()) / (1000 * 3600 * 24);
+  const daysLeft = ((new Date(data.finalDate)).getTime() - (new Date()).getTime()) / (1000 * 3600 * 24);
   const totalDays = ((new Date(data.finalDate)).getTime() - (new Date(data.created)).getTime()) / (1000 * 3600 * 24);
 
-  const startTime = ((new Date(currentTime)).getTime() > (new Date(data.finalDate)).getTime()) ?
+  const startTime = ((new Date()).getTime() > (new Date(data.finalDate)).getTime()) ?
     (new Date(data.finalDate)).getTime() :
-    (new Date(currentTime)).getTime();
+    (new Date()).getTime();
   let habitSkips = 0;
 
   for (let time = startTime; time >= (new Date(habit.dates[0])).getTime(); time -= 8.64e+7) {
@@ -40,12 +43,20 @@ function Goal({ data }) {
     goalIcon = <MdClose className="w-8 h-8" title="Goal not achieved" />
   }
 
+  const goalClass = classNames(
+    'flex', 'items-center', 'space-x-2', 'w-full', 'pl-4', 'pr-2',
+    'bg-gradient-to-br', 'from-neutral-2', 'to-neutral-5', 'rounded-xl', 'shadow-md', 'shadow-neutral-3');
+
   return (
-    <div className="flex items-center space-x-2 w-full pl-4 pr-2 bg-gradient-to-br from-neutral-2 to-neutral-5 rounded-xl shadow-md shadow-neutral-3">
+    <div className={goalClass}>
       {goalIcon}
 
-      <div className="grow flex flex-col pt-1 pb-2">
-        <p className="text-neutral-4">{data.finalDate}</p>
+      <div className="grow flex flex-col space-y-1 pt-1 pb-2">
+        <div className="flex items-center space-x-2">
+          <p className="text-lg font-bold">{data.name}</p>
+          <p className="text-neutral-4">{data.finalDate}</p>
+        </div>
+
         <div className="flex items-center space-x-2">
           {habitIcon}
           <p>{habit.name}</p>

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { addGoal, editGoal } from './goalsSlice';
 
 const newGoalSlice = createSlice({
   name: 'newGoal',
@@ -32,11 +33,21 @@ const newGoalSlice = createSlice({
       state.habit = action.payload.habit;
 
       const finalDate = new Date(action.payload.finalDate);
-
       state.finalDate.year = finalDate.getFullYear();
       state.finalDate.month = String(finalDate.getMonth() + 1).padStart(2, '0');
       state.finalDate.day = String(finalDate.getDate()).padStart(2, '0');
     }
+  },
+  extraReducers(builder) {
+    const resetState = (state) => {
+      state.goalName = '';
+      state.maxSkips = 0;
+      state.habit = null;
+      state.finalDate = {};
+    };
+
+    builder.addCase(addGoal, resetState);
+    builder.addCase(editGoal, resetState);
   }
 });
 

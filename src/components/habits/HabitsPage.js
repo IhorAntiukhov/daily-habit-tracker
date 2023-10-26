@@ -19,6 +19,7 @@ function HabitsPage() {
     dispatch(setSortingCriteria({ criteria, order }));
   }
 
+  console.log(useSortHabits())
   const renderedHabits = useSortHabits().map((habit) => <Habit key={habit.id} data={habit} />);
 
   const pageClass = classNames(

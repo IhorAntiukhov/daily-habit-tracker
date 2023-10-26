@@ -13,7 +13,6 @@ function Goal({ data }) {
   const habits = useSelector((state) => state.habitsReducer.habits);
 
   const habit = habits.find((habit) => habit.id === data.habit);
-  if (!habit) return;
   const habitIcon = habitTemplates.find((templateHabit) => templateHabit.name === habit.icon)?.icon;
 
   const daysLeft = ((new Date(data.finalDate)).getTime() - (new Date()).getTime()) / (1000 * 3600 * 24);

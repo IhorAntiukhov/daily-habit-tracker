@@ -63,7 +63,8 @@ function NewHabitPage() {
       id: (addOrEdit) ? nanoid() : editableHabit.id, name: habitName,
       icon: habitIcon, days: habitDays,
       time: habitDeadlineTime,
-      created: formattedDate, dates: editableHabit.dates
+      created: formattedDate,
+      dates: (addOrEdit) ? [] : editableHabit.dates
     };
 
     dispatch((addOrEdit) ? addHabit(habit) : editHabit(habit));

@@ -27,7 +27,7 @@ module.exports = {
       'close-nav-drawer': 'closeNavDrawer 0.3s ease-out 0s 1 normal forwards',
       'show-darkening-area': 'showDarkeningArea 0.3s ease-out 0s 1 normal forwards',
       'hide-darkening-area': 'hideDarkeningArea 0.3s ease-out 0s 1 normal forwards',
-      'slide-down': 'slideDown 0.3s ease-out 0s 1 normal forwards',
+      'slide-down': 'slideDown 0.5s ease-out 0s 1 normal forwards',
       'open-select': 'openSelect 0.3s ease-out 0s 1 normal forwards',
       'close-select': 'closeSelect 0.3s ease-out 0s 1 normal forwards',
       'flip-select-arrow': 'flipSelectArrow 0.2s ease-out 0s 1 normal forwards',
@@ -66,7 +66,7 @@ module.exports = {
         },
         'slideDown': {
           '0%': {
-            transform: 'translateY(-3rem)',
+            transform: 'translateY(-5rem)',
             opacity: '0'
           },
           '100%': {

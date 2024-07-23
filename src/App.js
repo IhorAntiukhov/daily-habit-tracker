@@ -14,6 +14,7 @@ import NotFoundPage from './components/other/NotFoundPage';
 function App() {
   return (
     <div className="relative h-screen bg-neutral-1 lg:flex">
+      hello
       <NavDrawer />
       <div className="relative z-10 h-full sm:px-6 sm:pt-24 sm:pb-12 lg:grow lg:flex lg:justify-center lg:pb-24">
         <Routes>
